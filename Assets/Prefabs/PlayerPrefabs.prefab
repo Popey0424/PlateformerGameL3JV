@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 688574343767284842}
   - component: {fileID: 8601678489938031888}
   - component: {fileID: 5255068159534932109}
+  - component: {fileID: 1568887585503582288}
   m_Layer: 0
   m_Name: PlayerPrefabs
   m_TagString: Untagged
@@ -148,3 +149,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1568887585503582288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981251143103645683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16741040e8ce0c04cb68ac45e1eaaedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputs: {x: 0, y: 0}
+  _inputJump: 0
+  _rb: {fileID: 5255068159534932109}
+  _walkSpeed: 4
+  _acceleration: 6
+  _groundOffset: 0
+  _groundRadius: 0
+  _GroundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  _timerNoJump: 0
+  _isGrounded: 0
+  _jumpForce: 50000
+  _timeMinBetweenJump: 0
+  _velocityFallMin: 0
