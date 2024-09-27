@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -47,6 +48,9 @@ public class PlayerController : MonoBehaviour
      private Vector2 _collisionBox;
     private float[] directions = new float[] { -1f, 1f };
 
+    [Header("Facing")]
+    private bool isFacingRight = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +69,7 @@ public class PlayerController : MonoBehaviour
         HandleGrounded();
         HandleJump();
         _timeSinceJumpPressed += Time.deltaTime;
+        
     }
 
     void HandleInputs()
@@ -86,6 +91,15 @@ public class PlayerController : MonoBehaviour
         var velocity  = _rb.velocity;   
         Vector2 wantedVelocity = new Vector2(_inputs.x * _walkSpeed, velocity.y);
         _rb.velocity = Vector2.MoveTowards( velocity,  wantedVelocity,  _acceleration * Time.deltaTime);
+
+        if(_inputs.x > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if (_inputs.x < 0 && isFacingRight)
+        {
+            Flip();
+        }
     }
 
     private void HandleGrounded()
@@ -195,4 +209,14 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+
+
 }
