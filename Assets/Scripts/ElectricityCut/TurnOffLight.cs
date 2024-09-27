@@ -16,14 +16,6 @@ public class TurnOffLight : MonoBehaviour
             globalLight.intensity = 0;
         }
     }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Electricity ON");
-            globalLight.intensity = 1;
-        }
-    }
 }
 
 
