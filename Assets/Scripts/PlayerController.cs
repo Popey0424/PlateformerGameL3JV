@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -252,6 +253,12 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = GameManager.Instance.GetLastCheckpointPosition();
         _rb.velocity = Vector2.zero; 
+    }
+
+    public void DieFromTheGhosts()
+    {
+        Debug.Log("Mort");
+        Destroy(gameObject);
     }
 
 

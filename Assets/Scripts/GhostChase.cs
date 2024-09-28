@@ -29,6 +29,12 @@ public class GhostChase : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) 
         {
             Debug.Log("Toucher par la hordre");
+            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+
+            if (playerController != null)
+            {
+                playerController.DieFromTheGhosts();
+            }
         }
     }
 }
