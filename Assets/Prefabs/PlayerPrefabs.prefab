@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8601678489938031888}
   - component: {fileID: 5255068159534932109}
   - component: {fileID: 1568887585503582288}
+  - component: {fileID: 2831346148189997996}
   m_Layer: 0
   m_Name: PlayerPrefabs
   m_TagString: Untagged
@@ -77,9 +78,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -273168640, guid: 4705d33425843144e84b8c2ddb28eeea, type: 3}
+  m_Sprite: {fileID: 1687148727, guid: 590c399ec9be88f43a7df67c8ec51e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.16, y: 0.16}
@@ -120,8 +121,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0018527173, y: -0.016674481}
-  m_Size: {x: 0.1204753, y: 0.13159163}
+  m_Offset: {x: 0, y: -0.89009196}
+  m_Size: {x: 3.1999347, y: 8.443956}
   m_Direction: 0
 --- !u!50 &5255068159534932109
 Rigidbody2D:
@@ -167,26 +168,48 @@ MonoBehaviour:
   _rb: {fileID: 5255068159534932109}
   _walkSpeed: 10
   _acceleration: 10
-  _groundOffset: 0
+  _groundOffset: -1.59
   _groundRadius: 0.05
   _GroundLayer:
     serializedVersion: 2
     m_Bits: 1024
   _timerNoJump: 0
   _isGrounded: 0
-  _jumpForce: 50000
-  _timeMinBetweenJump: 0
-  _velocityFallMin: 0
-  _gravity: 0
-  _gravityUpJump: 0
+  _jumpForce: 7
+  _timeMinBetweenJump: 0.5
+  _velocityFallMin: -10
+  _gravity: 0.5
+  _gravityUpJump: 0.5
   _timeSinceJumpPressed: 0
   _timeSinceGrounded: 0
-  _coyoteTime: 0
+  _coyoteTime: 0.2
   _slopeDetectOffset: 0.5
   _Friction: {fileID: 0}
   _NoFriction: {fileID: 0}
   _offsetCollisionBox: {x: 0, y: 0}
   _offsetToReplace: {x: 0, y: 0}
+  goPlatform: {fileID: 0}
+--- !u!95 &2831346148189997996
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981251143103645683}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47fea8e8bc1f77840843788aa2c5cae5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8223437107623321885
 GameObject:
   m_ObjectHideFlags: 0
