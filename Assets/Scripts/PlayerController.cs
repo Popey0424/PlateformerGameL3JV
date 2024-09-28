@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -51,10 +54,25 @@ public class PlayerController : MonoBehaviour
     [Header("Facing")]
     private bool isFacingRight = true;
 
+   
+ 
+    
+
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
         
+        if (GameManager.Instance.GetLastCheckpointPosition() == Vector2.zero)
+        {
+            GameManager.Instance.SaveCheckpoint(transform.position);
+        }
+        else
+        {
+            Respawn();
+        }
     }
 
     // Update is called once per frame
@@ -216,6 +234,19 @@ public class PlayerController : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    
+    public void DieAndRespawn()
+    {
+        Debug.Log("Le joueur est mort !");
+        Respawn();
+    }
+
+    private void Respawn()
+    {
+        transform.position = GameManager.Instance.GetLastCheckpointPosition();
+        _rb.velocity = Vector2.zero; 
     }
 
 

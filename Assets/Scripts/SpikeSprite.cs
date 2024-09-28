@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class SpikeSprite : MonoBehaviour
 {
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Toucher");
+            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+
+            
+            if (playerController != null)
+            {
+                playerController.DieAndRespawn(); 
+            }
+        }
     }
 }
