@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -54,12 +55,14 @@ public class PlayerController : MonoBehaviour
     [Header("Facing")]
     private bool isFacingRight = true;
 
-   
- 
-    
+
+    public GameObject goPlatform;
+    private bool _isOnPlatform = false;
+    private Vector3 _lastPlateformPosition;
 
 
-    
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +86,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        HandlePlatform();
+
         HandleMovements();
         HandleGrounded();
         HandleJump();
@@ -250,4 +255,32 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
+
+    private void HandlePlatform()
+    {
+        if (_isOnPlatform == false) return;
+
+        var difference = goPlatform.transform.position - _lastPlateformPosition;
+        _lastPlateformPosition = goPlatform.transform.position;
+        _rb.transform.position += difference;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("MoovingPlatform"))
+        {
+            goPlatform = collision.gameObject;
+            _isOnPlatform = true;
+            _lastPlateformPosition = goPlatform.transform.position;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("MoovingPlatform"))
+        {
+            _isOnPlatform = false;
+        }
+    }
 }
