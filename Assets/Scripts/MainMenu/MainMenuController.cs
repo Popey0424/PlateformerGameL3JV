@@ -14,14 +14,44 @@ public class MainMenuController : MonoBehaviour
     [Header("Menus")]
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject creditsMenu;
-    [SerializeField] private GameObject settignsMenu;
+    [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject leaveWarning;
 
+    [Header("Raycast")]
     [SerializeField] private GameObject rayCastLeaveImage;
 
-    public KeyCode leaveMainMenu;
+    [Header("EscapeKey")]
+    [SerializeField] private KeyCode leaveMainMenu;
 
+    [Header("Bool Escape")]
+    [SerializeField] private bool IsInMainMenu;
 
+    private void Start()
+    {
+        settingsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
+        rayCastLeaveImage.SetActive(false);
+        IsInMainMenu = true;
+    }
+
+    private void Update()
+    {
+        if (settingsMenu.activeSelf && Input.GetKeyDown(leaveMainMenu))
+        {
+            //Back
+            IsInMainMenu = true;
+        }
+        if (creditsMenu.activeSelf && Input.GetKeyDown(leaveMainMenu))
+        {
+            //back
+            IsInMainMenu = true;
+        }
+        if(leaveWarning.activeSelf && Input.GetKeyDown(leaveMainMenu))
+        {
+            //back
+            IsInMainMenu= true;
+        }
+    }
 
 
 
@@ -47,6 +77,12 @@ public class MainMenuController : MonoBehaviour
     {
         creditsMenu.gameObject.SetActive(true);
     }
+
+    public void OnClickBackCredits()
+    {
+        imagefade.gameObject.SetActive(true);
+        imagefade.DOFade(1, 2.9f).OnComplete(FadeMenuComplete);
+    }
     #endregion
 
     #region SettingsMenu
@@ -58,11 +94,19 @@ public class MainMenuController : MonoBehaviour
 
     private void FadeSettingsComplete()
     {
-        settignsMenu.gameObject.SetActive(true);
+        settingsMenu.gameObject.SetActive(true);
+        IsInMainMenu = false;
+        imagefade.DOFade(0, 1).OnComplete(ResetFade);
+    }
+
+    public void OnClickBackSettings()
+    {
+        imagefade.gameObject.SetActive(true);
+        imagefade.DOFade(1, 1f).OnComplete(FadeMenuComplete);
     }
     #endregion
 
-    #region LaveGame
+    #region LeaveGame
     public void OnClickLeaveGameButton()
     {
         Animator animator_LeaveGame = leaveWarning.GetComponent<Animator>();
@@ -76,11 +120,22 @@ public class MainMenuController : MonoBehaviour
     }
     #endregion
 
+    #region FadeMenu
+    private void FadeMenuComplete()
+    {
+        settingsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
+        IsInMainMenu = true;
+        imagefade.DOFade(0, 1).OnComplete(ResetFade);
+    }
+    #endregion
 
-
-
-
-
+    #region ResetFade
+    public void ResetFade()
+    {
+        imagefade.gameObject.SetActive(false);
+    }
+    #endregion
 
 
 
