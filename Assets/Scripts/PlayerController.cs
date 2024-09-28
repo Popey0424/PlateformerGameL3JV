@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
     private bool _isOnPlatform = false;
     private Vector3 _lastPlateformPosition;
 
+    private bool playerDie = false;
+
 
 
 
@@ -259,6 +261,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Mort");
         Destroy(gameObject);
+        playerDie = true;
     }
 
 
