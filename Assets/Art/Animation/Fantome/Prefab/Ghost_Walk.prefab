@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1942047642082800723}
   - component: {fileID: 6541492650340941234}
   m_Layer: 0
-  m_Name: Walk_0
+  m_Name: Ghost_Walk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
