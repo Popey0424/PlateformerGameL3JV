@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static Unity.VisualScripting.Member;
 
 
@@ -269,8 +270,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Mort");
         Destroy(gameObject);
         playerDie = true;
+        SceneManager.LoadScene("looseScreen");
     }
 
+   
 
 
 

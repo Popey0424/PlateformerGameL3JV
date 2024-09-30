@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GhostChase
+  m_Name: GhostChase2
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 578635902, guid: 1fd3d8f5b32540c4185013cf79b20f74, type: 3}
+      value: {fileID: 934373521, guid: 9f5382e9b90a49a4da2b4ad52cac92f6, type: 3}
     - time: 0.16666667
-      value: {fileID: -21523681, guid: 1fd3d8f5b32540c4185013cf79b20f74, type: 3}
+      value: {fileID: 855451383, guid: 9f5382e9b90a49a4da2b4ad52cac92f6, type: 3}
     - time: 0.33333334
-      value: {fileID: 578635902, guid: 1fd3d8f5b32540c4185013cf79b20f74, type: 3}
+      value: {fileID: 934373521, guid: 9f5382e9b90a49a4da2b4ad52cac92f6, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,9 +48,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 578635902, guid: 1fd3d8f5b32540c4185013cf79b20f74, type: 3}
-    - {fileID: -21523681, guid: 1fd3d8f5b32540c4185013cf79b20f74, type: 3}
-    - {fileID: 578635902, guid: 1fd3d8f5b32540c4185013cf79b20f74, type: 3}
+    - {fileID: 934373521, guid: 9f5382e9b90a49a4da2b4ad52cac92f6, type: 3}
+    - {fileID: 855451383, guid: 9f5382e9b90a49a4da2b4ad52cac92f6, type: 3}
+    - {fileID: 934373521, guid: 9f5382e9b90a49a4da2b4ad52cac92f6, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
