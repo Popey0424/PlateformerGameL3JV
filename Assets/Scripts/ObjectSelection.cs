@@ -59,7 +59,7 @@ public class ObjectSelection : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 playerLamp.SetActive(true);
-                playerLamp.gameObject.transform.position = this.transform.position;
+                playerLamp.gameObject.transform.position = collision.gameObject.transform.position;
                 this.gameObject.SetActive(false);
                 _CanTransformLamp = false;
                 Destroy(pressToDestroy);
@@ -71,7 +71,7 @@ public class ObjectSelection : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 playerGhost.SetActive(true);
-                playerGhost.gameObject.transform.position = this.transform.position;
+                playerGhost.gameObject.transform.position = collision.gameObject.transform.position;
                 this.gameObject.SetActive(false);
                 _CanTransformGhost = false;
                 Destroy(pressToDestroy);
