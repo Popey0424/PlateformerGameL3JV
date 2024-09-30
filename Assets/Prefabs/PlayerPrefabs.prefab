@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2831346148189997996}
   m_Layer: 0
   m_Name: PlayerPrefabs
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,8 +121,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.89009196}
-  m_Size: {x: 3.1999347, y: 8.443956}
+  m_Offset: {x: 0, y: -1.0446856}
+  m_Size: {x: 3.1999347, y: 8.753142}
   m_Direction: 0
 --- !u!50 &5255068159534932109
 Rigidbody2D:
@@ -168,7 +168,7 @@ MonoBehaviour:
   _rb: {fileID: 5255068159534932109}
   _walkSpeed: 10
   _acceleration: 10
-  _groundOffset: -1.59
+  _groundOffset: -0.96
   _groundRadius: 0.05
   _GroundLayer:
     serializedVersion: 2

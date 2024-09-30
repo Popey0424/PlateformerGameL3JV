@@ -3172,6 +3172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2026514039}
   - component: {fileID: 2026514040}
+  - component: {fileID: 2026514041}
   m_Layer: 0
   m_Name: _scripts
   m_TagString: Untagged
@@ -3214,6 +3215,20 @@ MonoBehaviour:
   rayCastLeaveImage: {fileID: 295337772}
   leaveMainMenu: 27
   IsInMainMenu: 0
+--- !u!114 &2026514041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026514038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee88309ec4936349a5d07a277d88522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MixerSFX: {fileID: 24100000, guid: b93f5184794293b4a925260999c340dd, type: 2}
+  MixerVolume: {fileID: 0}
 --- !u!1 &2079449990
 GameObject:
   m_ObjectHideFlags: 0
