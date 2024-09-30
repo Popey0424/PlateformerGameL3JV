@@ -68,7 +68,6 @@ public class Laser : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Toucher");
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
 
 
