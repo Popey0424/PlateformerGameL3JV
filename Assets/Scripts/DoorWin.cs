@@ -10,7 +10,7 @@ public class DoorWin : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene();
+            //SceneManager.LoadScene();
         }
     }
 }
