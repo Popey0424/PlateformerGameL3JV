@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 
 
@@ -63,6 +64,8 @@ public class PlayerController : MonoBehaviour
 
     private bool playerDie = false;
 
+ 
+
 
 
 
@@ -94,6 +97,7 @@ public class PlayerController : MonoBehaviour
         HandleMovements();
         HandleGrounded();
         HandleJump();
+        
         _timeSinceJumpPressed += Time.deltaTime;
         
     }
@@ -112,6 +116,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+   
     private void HandleMovements()
     {
         var velocity  = _rb.velocity;   
@@ -154,6 +159,8 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawSphere(transform.position + Vector3.up * _groundOffset, _groundRadius);
     }
 
+
+
     private void HandleJump()
     {
 
@@ -165,7 +172,7 @@ public class PlayerController : MonoBehaviour
             _timerNoJump = _timeMinBetweenJump;
 
         }
-        if (_isGrounded == false) 
+      if (_isGrounded == false) 
         {
             if (_rb.velocity.y < 0)
             {
