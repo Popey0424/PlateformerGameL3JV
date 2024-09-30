@@ -7,7 +7,7 @@ public class GhostChase : MonoBehaviour
     [Header("Chase Settigns")]
     [SerializeField] private float ghostSpeed = 1f;
     [SerializeField] private float speedIncrease = 0.5f;
-
+    
     [SerializeField] private bool isRising = true;
 
     private void Update()
@@ -33,7 +33,7 @@ public class GhostChase : MonoBehaviour
 
             if (playerController != null)
             {
-                playerController.DieFromTheGhosts();
+                GameManager.Instance.Lose();
             }
         }
     }

@@ -265,13 +265,7 @@ public class PlayerController : MonoBehaviour
         _rb.velocity = Vector2.zero; 
     }
 
-    public void DieFromTheGhosts()
-    {
-        Debug.Log("Mort");
-        Destroy(gameObject);
-        playerDie = true;
-        SceneManager.LoadScene("looseScreen");
-    }
+    
 
    
 
