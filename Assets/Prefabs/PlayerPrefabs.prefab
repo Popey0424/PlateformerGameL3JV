@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 5255068159534932109}
   - component: {fileID: 1568887585503582288}
   - component: {fileID: 2831346148189997996}
+  - component: {fileID: 6635510896099910170}
   m_Layer: 0
   m_Name: PlayerPrefabs
-  m_TagString: Ghost
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,6 +211,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6635510896099910170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981251143103645683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c0083ec7b5b6e44b432113cc5b73cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressZ: {fileID: 8684419090279942479, guid: 3a777d532d128f34398f4e465c78107f, type: 3}
+  playerGhost: {fileID: 981251143103645683}
+  playerLamp: {fileID: 0}
 --- !u!1 &8223437107623321885
 GameObject:
   m_ObjectHideFlags: 0
