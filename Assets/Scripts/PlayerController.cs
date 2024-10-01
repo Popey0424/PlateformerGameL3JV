@@ -65,6 +65,9 @@ public class PlayerController : MonoBehaviour
 
     private bool playerDie = false;
 
+    //[Header("Animator")]
+    //[SerializeField] private Animator _animator;
+
  
 
 

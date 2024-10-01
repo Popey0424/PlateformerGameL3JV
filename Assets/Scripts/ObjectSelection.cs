@@ -46,10 +46,10 @@ public class ObjectSelection : MonoBehaviour
             _CanTransformGhost = true;
             pressToDestroy = press2;
         }
-        else if (collision.CompareTag("Object3"))
-        {
+        //else if (collision.CompareTag("Object3"))
+        //{
 
-        }
+        //}
     }
 
     private void OnTriggerStay2D(Collider2D collision)

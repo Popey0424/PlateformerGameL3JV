@@ -672,11 +672,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 802253837908355365, guid: 4d580b65050e76c4982861ee21c7e87c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 45.8
       objectReference: {fileID: 0}
     - target: {fileID: 802253837908355365, guid: 4d580b65050e76c4982861ee21c7e87c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 11.6
       objectReference: {fileID: 0}
     - target: {fileID: 802253837908355365, guid: 4d580b65050e76c4982861ee21c7e87c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -752,6 +752,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611dfb937028f354e90339305cb0839a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Lampe: {fileID: 0}
+  Ghost: {fileID: 0}
+  imageFade: {fileID: 0}
 --- !u!4 &1339705991
 Transform:
   m_ObjectHideFlags: 0
@@ -1146,7 +1149,6 @@ MonoBehaviour:
   pressZ: {fileID: 0}
   playerGhost: {fileID: 200118086}
   playerLamp: {fileID: 128861910}
-  object3: {fileID: 0}
 --- !u!1 &1812574077
 GameObject:
   m_ObjectHideFlags: 0
