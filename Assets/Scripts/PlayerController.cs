@@ -1,25 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Unity.VisualScripting.Member;
-
-
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Vector2 _inputs;
-    [SerializeField] private bool _inputJump;
     [SerializeField] private Rigidbody2D _rb;
 
     [Header("Movement")]
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _acceleration;
-
 
     [SerializeField] private float _groundOffset;
     [SerializeField] private float _groundRadius;
@@ -28,56 +19,38 @@ public class PlayerController : MonoBehaviour
     public LayerMask _GroundLayer;
 
     [Header("Jump")]
-    [SerializeField] private float _timerNoJump;
+    [SerializeField] private bool _inputJump;
     [SerializeField] private bool _isGrounded;
-    [SerializeField] private float _jumpForce;
-    [SerializeField] private float _timeMinBetweenJump = 0.1f;
-    [SerializeField] private int _velocityFallMin;
-    [SerializeField] private float _gravity;
-    [SerializeField] private float _gravityUpJump;
-    [SerializeField] private float _timeSinceJumpPressed;
-    private float _jumpInputTimer = 0.1f;
-    [SerializeField] public float _timeSinceGrounded;
-    [SerializeField] private float _coyoteTime;
-
-
-    [Header("Slope Detection")]
-    public float _slopeDetectOffset = 0.5f;
-    public PhysicsMaterial2D _Friction;
-    public PhysicsMaterial2D _NoFriction;
-    private bool _isOnSlope = false;
-    private RaycastHit2D[] _hitResults = new RaycastHit2D[1];
-    private Collider2D _collider;
+    [SerializeField] private float _jumpForceMin = 5f;  
+    [SerializeField] private float _jumpForceMax = 15f; 
+    [SerializeField] private float _maxHoldTime = 2.0f; 
+    private float _jumpHoldTime = 0f; 
+    [SerializeField] private float _fallMultiplier = 0.1f;  
+    [SerializeField] private float _lowJumpMultiplier = 2f;
 
     [Header("TeleportPlayer")]
     [SerializeField] private Vector2 _offsetCollisionBox;
     [SerializeField] private Vector2 _offsetToReplace;
-     private Vector2 _collisionBox;
+    private Vector2 _collisionBox;
     private float[] directions = new float[] { -1f, 1f };
-
-    [Header("Facing")]
-    private bool isFacingRight = true;
-
-
     public GameObject goPlatform;
     private bool _isOnPlatform = false;
     private Vector3 _lastPlateformPosition;
 
+    [Header("Facing")]
+    private bool isFacingRight = true;
+
     private bool playerDie = false;
 
-    //[Header("Animator")]
-    //[SerializeField] private Animator _animator;
+    private float _timeSinceGrounded;
+    private float _coyoteTime = 0.1f;
 
- 
+    private bool _isChargingJump = false;  
+    private bool _isInAir = false; 
 
-
-
-
-
-    // Start is called before the first frame update
+   
     void Start()
     {
-        
         if (GameManager.Instance.GetLastCheckpointPosition() == Vector2.zero)
         {
             GameManager.Instance.SaveCheckpoint(transform.position);
@@ -88,7 +61,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         HandleInputs();
@@ -96,38 +69,43 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        HandlePlatform();
-
         HandleMovements();
         HandleGrounded();
-        HandleJump();
-        
-        _timeSinceJumpPressed += Time.deltaTime;
-        
+        HandleJumpCharge();
+        HandleJumpRelease();
+        HandleJumpPhysics();
+        HandlePlatform();
     }
 
     void HandleInputs()
     {
         _inputs.x = Input.GetAxisRaw("Horizontal");
-        _inputs.y = Input.GetAxisRaw("Vertical");
 
-        _inputJump = Input.GetKey(KeyCode.UpArrow);
+        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        {
+            
+            _isChargingJump = true;
+            _jumpHoldTime = 0f;  
+        }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            _timeSinceJumpPressed = 0;
-
-
-
+        if (Input.GetKeyUp(KeyCode.Space) && _isChargingJump)
+        {
+            
+            _isChargingJump = false;
+            _inputJump = true;  
+        }
     }
 
-   
     private void HandleMovements()
     {
-        var velocity  = _rb.velocity;   
-        Vector2 wantedVelocity = new Vector2(_inputs.x * _walkSpeed, velocity.y);
-        _rb.velocity = Vector2.MoveTowards( velocity,  wantedVelocity,  _acceleration * Time.deltaTime);
+        if (!_isInAir) 
+        {
+            var velocity = _rb.velocity;
+            Vector2 wantedVelocity = new Vector2(_inputs.x * _walkSpeed, velocity.y);
+            _rb.velocity = Vector2.MoveTowards(velocity, wantedVelocity, _acceleration * Time.deltaTime);
+        }
 
-        if(_inputs.x > 0 && !isFacingRight)
+        if (_inputs.x > 0 && !isFacingRight)
         {
             Flip();
         }
@@ -141,110 +119,81 @@ public class PlayerController : MonoBehaviour
     {
         _timeSinceGrounded += Time.deltaTime;
 
-        
-
         Vector2 point = (Vector2)(transform.position + Vector3.up * _groundOffset);
         bool currentGrounded =
             Physics2D.OverlapCircleNonAlloc(point, _groundRadius, _collidersGround, _GroundLayer) > 0;
 
-        if (currentGrounded == false && _isGrounded)
+        if (!currentGrounded && _isGrounded)
         {
             _timeSinceGrounded = 0;
         }
 
         _isGrounded = currentGrounded;
 
-        
-  
+        if (_isGrounded)
+        {
+            _isInAir = false; 
+        }
+    }
+
+    private void HandleJumpCharge()
+    {
+        if (_isChargingJump)
+        {
+            
+            _jumpHoldTime += Time.deltaTime;
+
+            
+            _jumpHoldTime = Mathf.Clamp(_jumpHoldTime, 0f, _maxHoldTime);
+
+          
+        }
+    }
+
+    private void HandleJumpRelease()
+    {
+        if (_inputJump && _isGrounded)
+        {
+            
+            float jumpForce = Mathf.Lerp(_jumpForceMin, _jumpForceMax, _jumpHoldTime / _maxHoldTime);
+
+            
+            float jumpDirection = isFacingRight ? 1f : -1f;
+
+           
+            _rb.velocity = new Vector2(jumpDirection * _walkSpeed, jumpForce);
+
+            
+            _isInAir = true;
+
+            
+            _inputJump = false;
+            _jumpHoldTime = 0f;
+
+            
+            
+        }
+    }
+
+    private void HandleJumpPhysics()
+    {
+        if (_rb.velocity.y < 0) 
+        {
+            _rb.gravityScale = _fallMultiplier;  
+        }
+        else if (_rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 
+        {
+            _rb.gravityScale = _lowJumpMultiplier;  
+        }
+        else
+        {
+            _rb.gravityScale = 1f; 
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position + Vector3.up * _groundOffset, _groundRadius);
-    }
-
-
-
-    private void HandleJump()
-    {
-
-        _timerNoJump -= Time.deltaTime;
-
-        if (_inputJump && (_rb.velocity.y <= 0 || _isOnSlope) && (_isGrounded || _timeSinceGrounded < _coyoteTime) && _timerNoJump <= 0 && _timeSinceJumpPressed < _jumpInputTimer)
-        {
-            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
-            _timerNoJump = _timeMinBetweenJump;
-
-        }
-      if (_isGrounded == false) 
-        {
-            if (_rb.velocity.y < 0)
-            {
-                _rb.gravityScale = _gravity;
-            }
-            else
-            {
-                _rb.gravityScale = _inputJump ? _gravityUpJump : _gravity;
-            }
-        }
-        else
-        {
-            _rb.gravityScale = _gravity;
-        }
-
-        if (_rb.velocity.y < _velocityFallMin)
-            _rb.velocity = new Vector2(_rb.velocity.x, _velocityFallMin);
-  
-    }
-
-    void handleSlope()
-    {
-        Vector3 origin = transform.position + Vector3.up * _groundOffset;
-        bool slopeRight = Physics2D.RaycastNonAlloc(origin, Vector2.right, _hitResults, _slopeDetectOffset, _GroundLayer) > 0;
-        bool slopeLeft = Physics2D.RaycastNonAlloc(origin, Vector2.right, _hitResults, _slopeDetectOffset, _GroundLayer) > 0;
-
-        _isOnSlope = (slopeRight || slopeLeft) && (slopeRight == false || slopeLeft == false);
-        if (Mathf.Abs(_inputs.x) < 00.1f && (slopeRight || slopeLeft))
-        {
-            _collider.sharedMaterial = _Friction;
-        }
-        else
-        {
-            _collider.sharedMaterial = _NoFriction;
-        }
-    }
-
-    private void HandleCorners()
-    {
-        for (int i = 0; i < directions.Length; i++)
-        {
-            float dir = directions[i];
-
-            if (Mathf.Abs(_inputs.x) > 0.1f && Mathf.Abs(Mathf.Sign(dir) - Mathf.Sign(_inputs.x)) < 0.001f && _isGrounded == false && _isOnSlope == false)
-            {
-                Vector3 position = transform.position + new Vector3(_offsetCollisionBox.x + dir * _offsetToReplace.x, _offsetCollisionBox.y, 0);
-                int result =
-                    Physics2D.BoxCastNonAlloc((Vector2)position, _collisionBox, 0, Vector2.zero, _hitResults, 0, _GroundLayer);
-
-                if (result > 0)
-                {
-                    position = transform.position + new Vector3(_offsetCollisionBox.x + dir * _offsetToReplace.x, _offsetCollisionBox.y + _offsetToReplace.y, 0);
-                    result = Physics2D.BoxCastNonAlloc((Vector2)position, _collisionBox, 0, Vector2.zero, _hitResults, 0, _GroundLayer);
-
-                    if (result == 0)
-                    {
-                        Debug.Log("éreplace");
-                        transform.position += new Vector3(dir * _offsetToReplace.x, _offsetToReplace.y);
-
-                        if (_rb.velocity.y < 0)
-                        {
-                            _rb.velocity = new Vector2(_rb.velocity.x, 0);
-                        }
-                    }
-                }
-            }
-        }
-
     }
 
     private void Flip()
@@ -255,7 +204,6 @@ public class PlayerController : MonoBehaviour
         transform.localScale = scale;
     }
 
-    
     public void DieAndRespawn()
     {
         Debug.Log("Le joueur est mort !");
@@ -265,14 +213,19 @@ public class PlayerController : MonoBehaviour
     private void Respawn()
     {
         transform.position = GameManager.Instance.GetLastCheckpointPosition();
-        _rb.velocity = Vector2.zero; 
+        _rb.velocity = Vector2.zero;
+    }
+
+    public bool IsChargingJump()
+    {
+        return _isChargingJump;
     }
 
     
-
-   
-
-
+    public float GetJumpChargePercentage()
+    {
+        return Mathf.Clamp01(_jumpHoldTime / _maxHoldTime);
+    }
 
     private void HandlePlatform()
     {
