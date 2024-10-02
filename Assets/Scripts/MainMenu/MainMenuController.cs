@@ -26,6 +26,9 @@ public class MainMenuController : MonoBehaviour
     [Header("Bool Escape")]
     [SerializeField] private bool IsInMainMenu;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource audioClick;
+
     private void Start()
     {
         settingsMenu.SetActive(false);
@@ -58,6 +61,7 @@ public class MainMenuController : MonoBehaviour
     #region StartGame
     public void OnClickPlaybutton()
     {
+        audioClick.Play();
         imagefade.gameObject.SetActive(true);
         imagefade.DOFade(1, 2.9f).OnComplete(FadeStartComplete);
     }
@@ -70,6 +74,7 @@ public class MainMenuController : MonoBehaviour
     #region CreditsMenu
     public void OnClickCreditsButton()
     {
+        audioClick.Play();
         imagefade.gameObject.SetActive(true);
         imagefade.DOFade(1, 2.9f).OnComplete(FadeCreditsComplete);
     }
@@ -80,6 +85,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickBackCredits()
     {
+        audioClick.Play();
         imagefade.gameObject.SetActive(true);
         imagefade.DOFade(1, 2.9f).OnComplete(FadeMenuComplete);
     }
@@ -88,6 +94,7 @@ public class MainMenuController : MonoBehaviour
     #region SettingsMenu
     public void OnClickSettingsButtons()
     {
+        audioClick.Play();
         imagefade.gameObject.SetActive(true);
         imagefade.DOFade(1, 1f).OnComplete(FadeSettingsComplete);
     }
@@ -101,6 +108,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickBackSettings()
     {
+        audioClick.Play();
         imagefade.gameObject.SetActive(true);
         imagefade.DOFade(1, 1f).OnComplete(FadeMenuComplete);
     }
@@ -109,6 +117,7 @@ public class MainMenuController : MonoBehaviour
     #region LeaveGame
     public void OnClickLeaveGameButton()
     {
+        audioClick.Play();
         Animator animator_LeaveGame = leaveWarning.GetComponent<Animator>();
 
         if (animator_LeaveGame != null)
@@ -117,6 +126,30 @@ public class MainMenuController : MonoBehaviour
             animator_LeaveGame.SetBool("IsOpen", true);
         }
         rayCastLeaveImage.SetActive(true);
+    }
+    #endregion
+
+    #region LeaveGameYes
+
+    public void OnClickYesLeaveGame()
+    {
+        audioClick.Play();
+        Application.Quit();
+    }
+    #endregion
+
+    #region LeaveGameNo
+    public void OnClickLeaveGameNo()
+    {
+        audioClick.Play();
+        Animator animator_LeaveGame = leaveWarning.GetComponent<Animator>();
+
+        if (animator_LeaveGame != null)
+        {
+            bool IsOpen = animator_LeaveGame.GetBool("IsOpen");
+            animator_LeaveGame.SetBool("IsOpen", false);
+        }
+        rayCastLeaveImage.SetActive(false);
     }
     #endregion
 
