@@ -321,7 +321,6 @@ MonoBehaviour:
   pressZ: {fileID: 8684419090279942479, guid: 3a777d532d128f34398f4e465c78107f, type: 3}
   playerGhost: {fileID: 200118086}
   playerLamp: {fileID: 128861910}
-  object3: {fileID: 0}
 --- !u!1 &272575542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,7 +999,7 @@ SpriteRenderer:
   m_Size: {x: 20.48, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &946865201
@@ -1153,7 +1152,6 @@ MonoBehaviour:
   pressZ: {fileID: 8684419090279942479, guid: 3a777d532d128f34398f4e465c78107f, type: 3}
   playerGhost: {fileID: 200118086}
   playerLamp: {fileID: 128861910}
-  object3: {fileID: 0}
 --- !u!1001 &1290447426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1247,6 +1245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611dfb937028f354e90339305cb0839a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Lampe: {fileID: 0}
+  Ghost: {fileID: 0}
+  imageFade: {fileID: 0}
 --- !u!4 &1339705991
 Transform:
   m_ObjectHideFlags: 0

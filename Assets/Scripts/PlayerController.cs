@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
+using System.Threading;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
@@ -85,6 +87,10 @@ public class PlayerController : MonoBehaviour
         {
             _timerEndJump += Time.deltaTime;
         }
+        if (_timerEndJump > _waitEndJump)
+        {
+            _isJumping = false;
+        }
     }
 
     private void FixedUpdate()
@@ -96,24 +102,10 @@ public class PlayerController : MonoBehaviour
         HandleJumpPhysics();
         HandlePlatform();
 
-        if (!isAnimationPlaying(_animator, PLAYER_JUMP))
+
+        if (!_isGrounded && (_isJumping == false))
         {
-            if (_isGrounded)
-            {
-                ChangeAnimationState(PLAYER_WALK);
-            }
-            else if (!_isGrounded && (_timerEndJump > _waitEndJump))
-            {
-                ChangeAnimationState(PLAYER_FALL);
-            }
-            else if (_isChargingJump == true)
-            {
-                ChangeAnimationState(PLAYER_CHARGE_JUMP);
-            }
-            else if (_inputJump == true)
-            {
-                ChangeAnimationState(PLAYER_JUMP);
-            }
+            ChangeAnimationState(PLAYER_FALL);
         }
     }
 
@@ -126,6 +118,7 @@ public class PlayerController : MonoBehaviour
             
             _isChargingJump = true;
             _jumpHoldTime = 0f;
+
             _timerEndJump = 0f;
             _isJumping = true;
         }
@@ -135,8 +128,10 @@ public class PlayerController : MonoBehaviour
             
             _isChargingJump = false;
             _inputJump = true;
+
             _timerEndJump = 0f;
             _isJumping = true;
+            ChangeAnimationState(PLAYER_JUMP);
         }
     }
 
@@ -152,10 +147,22 @@ public class PlayerController : MonoBehaviour
         if (_inputs.x > 0 && !isFacingRight)
         {
             Flip();
+            if (_inputJump == false && _isGrounded == true)
+            {
+                ChangeAnimationState(PLAYER_WALK);
+            }
         }
         else if (_inputs.x < 0 && isFacingRight)
         {
             Flip();
+            if (_inputJump == false && _isGrounded == true)
+            {
+                ChangeAnimationState(PLAYER_WALK);
+            }
+        }
+        else if (_inputs.x == 0 && _isGrounded == true && _inputJump == false && _isJumping == false && _isChargingJump == false)
+        {
+            ChangeAnimationState(PLAYER_IDLE);
         }
     }
 
@@ -165,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 point = (Vector2)(transform.position + Vector3.up * _groundOffset);
         bool currentGrounded =
-            Physics2D.OverlapCircleNonAlloc(point, _groundRadius, _collidersGround, _GroundLayer) > 0;
+        Physics2D.OverlapCircleNonAlloc(point, _groundRadius, _collidersGround, _GroundLayer) > 0;
 
         if (!currentGrounded && _isGrounded)
         {
@@ -190,7 +197,7 @@ public class PlayerController : MonoBehaviour
             
             _jumpHoldTime = Mathf.Clamp(_jumpHoldTime, 0f, _maxHoldTime);
 
-          
+            ChangeAnimationState(PLAYER_CHARGE_JUMP);
         }
     }
 
