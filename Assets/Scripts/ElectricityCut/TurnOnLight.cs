@@ -8,10 +8,14 @@ public class TurnOnLight : MonoBehaviour
 
     [SerializeField] private Light2D globalLight;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource lightOn;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            lightOn.Play();
             Debug.Log("Electricity ON");
             globalLight.intensity = 1;
         }

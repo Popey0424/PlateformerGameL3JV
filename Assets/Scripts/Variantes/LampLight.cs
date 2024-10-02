@@ -7,8 +7,7 @@ public class LampLight : MonoBehaviour
 {
     [SerializeField] private Light2D _light;
 
-    [Header("Sounds")]
-    [SerializeField] private AudioSource lightOn;
+
 
 
 
@@ -33,7 +32,7 @@ public class LampLight : MonoBehaviour
 
     public void OnLight()
     {
-        lightOn.Play();
+        
 
         _light.enabled = true;
 
