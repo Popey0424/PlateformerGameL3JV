@@ -3004,6 +3004,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TriggerElectricityOff
       objectReference: {fileID: 0}
+    - target: {fileID: 1011687119538700746, guid: 8ccc044bebc3f5a43bce045bbbb4ece7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3696212625614251122, guid: 8ccc044bebc3f5a43bce045bbbb4ece7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.14
