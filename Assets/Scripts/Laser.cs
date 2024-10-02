@@ -14,7 +14,11 @@ public class Laser : MonoBehaviour
     private float timer = 0;
     private BoxCollider2D _bc2D;
 
-    // Start is called before the first frame update
+
+    [Header("CameraShake")]
+    public CameraShake CamShake;
+
+  
     void Start()
     {
         _bc2D = GetComponent<BoxCollider2D>();
@@ -73,6 +77,7 @@ public class Laser : MonoBehaviour
 
             if (playerController != null)
             {
+                StartCoroutine(CamShake.Shake(.15000f, 4000f));
                 playerController.DieAndRespawn();
             }
         }

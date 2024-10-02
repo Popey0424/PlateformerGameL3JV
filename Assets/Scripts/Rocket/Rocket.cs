@@ -9,6 +9,8 @@ public class Rocket : MonoBehaviour
     private Rigidbody2D _rb;
     public bool _isActivated = false;
 
+    public CameraShake CamShake;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -38,6 +40,7 @@ public class Rocket : MonoBehaviour
 
             if (playerController != null)
             {
+                StartCoroutine(CamShake.Shake(.15000f, .4000f));
                 playerController.DieAndRespawn();
             }
             Destroy(this.gameObject);
