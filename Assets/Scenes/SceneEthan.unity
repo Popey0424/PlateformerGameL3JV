@@ -1614,7 +1614,6 @@ MonoBehaviour:
   pressZ: {fileID: 8684419090279942479, guid: 3a777d532d128f34398f4e465c78107f, type: 3}
   playerGhost: {fileID: 1687612003}
   playerLamp: {fileID: 1014311767}
-  object3: {fileID: 0}
 --- !u!1 &1339705989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,6 +1643,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611dfb937028f354e90339305cb0839a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Lampe: {fileID: 0}
+  Ghost: {fileID: 0}
+  imageFade: {fileID: 0}
 --- !u!4 &1339705991
 Transform:
   m_ObjectHideFlags: 0
@@ -2176,6 +2178,18 @@ PrefabInstance:
       propertyPath: _timeMinBetweenJump
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2831346148189997996, guid: 4d580b65050e76c4982861ee21c7e87c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 309e76b00b78ae044b1c1bc9d6041a44, type: 2}
+    - target: {fileID: 8601678489938031888, guid: 4d580b65050e76c4982861ee21c7e87c, type: 3}
+      propertyPath: m_Size.y
+      value: 6.9903326
+      objectReference: {fileID: 0}
+    - target: {fileID: 8601678489938031888, guid: 4d580b65050e76c4982861ee21c7e87c, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.16328096
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2209,7 +2223,6 @@ MonoBehaviour:
   pressZ: {fileID: 8684419090279942479, guid: 3a777d532d128f34398f4e465c78107f, type: 3}
   playerGhost: {fileID: 1687612003}
   playerLamp: {fileID: 1014311767}
-  object3: {fileID: 0}
 --- !u!1 &1812574077
 GameObject:
   m_ObjectHideFlags: 0

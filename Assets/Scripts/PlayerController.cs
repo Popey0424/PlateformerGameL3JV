@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -46,7 +47,20 @@ public class PlayerController : MonoBehaviour
     private float _coyoteTime = 0.1f;
 
     private bool _isChargingJump = false;  
-    private bool _isInAir = false; 
+    private bool _isInAir = false;
+
+    //Player animation states
+    Animator _animator;
+    string _currentState;
+    const string PLAYER_IDLE = "F_PlayerIdle";
+    const string PLAYER_WALK = "F_PlayerWalk";
+    const string PLAYER_JUMP = "F_PlayerJump";
+    const string PLAYER_CHARGE_JUMP = "F_PlayerChargeJump";
+    const string PLAYER_FALL = "F_PlayerFall";
+    private float _waitEndJump = 0.28f;
+    private float _timerEndJump = 1f;
+    private bool _isJumping = false;
+
 
    
     void Start()
@@ -59,12 +73,18 @@ public class PlayerController : MonoBehaviour
         {
             Respawn();
         }
+
+        _animator = GetComponent<Animator>();
     }
 
     
     void Update()
     {
         HandleInputs();
+        if (_isJumping == true)
+        {
+            _timerEndJump += Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
@@ -75,6 +95,26 @@ public class PlayerController : MonoBehaviour
         HandleJumpRelease();
         HandleJumpPhysics();
         HandlePlatform();
+
+        if (!isAnimationPlaying(_animator, PLAYER_JUMP))
+        {
+            if (_isGrounded)
+            {
+                ChangeAnimationState(PLAYER_WALK);
+            }
+            else if (!_isGrounded && (_timerEndJump > _waitEndJump))
+            {
+                ChangeAnimationState(PLAYER_FALL);
+            }
+            else if (_isChargingJump == true)
+            {
+                ChangeAnimationState(PLAYER_CHARGE_JUMP);
+            }
+            else if (_inputJump == true)
+            {
+                ChangeAnimationState(PLAYER_JUMP);
+            }
+        }
     }
 
     void HandleInputs()
@@ -85,14 +125,18 @@ public class PlayerController : MonoBehaviour
         {
             
             _isChargingJump = true;
-            _jumpHoldTime = 0f;  
+            _jumpHoldTime = 0f;
+            _timerEndJump = 0f;
+            _isJumping = true;
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && _isChargingJump)
         {
             
             _isChargingJump = false;
-            _inputJump = true;  
+            _inputJump = true;
+            _timerEndJump = 0f;
+            _isJumping = true;
         }
     }
 
@@ -251,6 +295,30 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag("MoovingPlatform"))
         {
             _isOnPlatform = false;
+        }
+    }
+
+
+    private void ChangeAnimationState(string newState)
+    {
+        if (newState == _currentState)
+        {
+            return;
+        }
+
+        _animator.Play(newState);
+        _currentState = newState;
+    }
+
+    private bool isAnimationPlaying(Animator animator, string stateName)
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
