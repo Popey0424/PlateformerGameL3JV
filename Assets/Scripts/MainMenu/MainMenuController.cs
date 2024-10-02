@@ -81,13 +81,15 @@ public class MainMenuController : MonoBehaviour
     private void FadeCreditsComplete()
     {
         creditsMenu.gameObject.SetActive(true);
+        IsInMainMenu = false;
+        imagefade.DOFade(0, 1).OnComplete(ResetFade);
     }
 
     public void OnClickBackCredits()
     {
         audioClick.Play();
         imagefade.gameObject.SetActive(true);
-        imagefade.DOFade(1, 2.9f).OnComplete(FadeMenuComplete);
+        imagefade.DOFade(1, 1f).OnComplete(FadeMenuComplete);
     }
     #endregion
 
@@ -114,7 +116,7 @@ public class MainMenuController : MonoBehaviour
     }
     #endregion
 
-    #region LeaveGame
+    #region LeaveGame Version2
     public void OnClickLeaveGameButton()
     {
         audioClick.Play();
@@ -170,6 +172,11 @@ public class MainMenuController : MonoBehaviour
     }
     #endregion
 
-
+    #region LeaveGame
+    public void OnClickWarningLeave()
+    {
+        leaveWarning.SetActive(true);
+    }
+    #endregion
 
 }
