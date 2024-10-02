@@ -53,12 +53,13 @@ public class PlayerController : MonoBehaviour
 
     //Player animation states
     Animator _animator;
-    string _currentState;
-    const string PLAYER_IDLE = "F_PlayerIdle";
-    const string PLAYER_WALK = "F_PlayerWalk";
-    const string PLAYER_JUMP = "F_PlayerJump";
-    const string PLAYER_CHARGE_JUMP = "F_PlayerChargeJump";
-    const string PLAYER_FALL = "F_PlayerFall";
+    AnimationClip _currentState;
+    public AnimationClip PLAYER_IDLE;
+    public AnimationClip PLAYER_WALK;
+    public AnimationClip PLAYER_JUMP;
+    public AnimationClip PLAYER_CHARGE_JUMP;
+    public AnimationClip PLAYER_FALL;
+    public AnimationClip PLAYER_LAMP_PLANE;
     private float _waitEndJump = 0.28f;
     private float _timerEndJump = 1f;
     private bool _isJumping = false;
@@ -230,7 +231,9 @@ public class PlayerController : MonoBehaviour
     {
         if (_rb.velocity.y < 0) 
         {
-            _rb.gravityScale = _fallMultiplier;  
+            _rb.gravityScale = _fallMultiplier;
+
+            //ChangeAnimationState(PLAYER_LAMP_PLANE);
         }
         else if (_rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 
         {
@@ -238,7 +241,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _rb.gravityScale = 1f; 
+            _rb.gravityScale = 1f;
         }
     }
 
@@ -306,14 +309,14 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void ChangeAnimationState(string newState)
+    private void ChangeAnimationState(AnimationClip newState)
     {
         if (newState == _currentState)
         {
             return;
         }
 
-        _animator.Play(newState);
+        _animator.Play(newState.name);
         _currentState = newState;
     }
 
