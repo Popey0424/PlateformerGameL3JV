@@ -111,7 +111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &802253837908355365
 Transform:
   m_ObjectHideFlags: 0
@@ -266,19 +266,19 @@ MonoBehaviour:
     m_Bits: 1024
   _inputJump: 0
   _isGrounded: 0
-  _jumpForceMin: 5
-  _jumpForceMax: 15
+  _jumpForceMin: 1
+  _jumpForceMax: 120
   _maxHoldTime: 2
   _fallMultiplier: 0.1
   _lowJumpMultiplier: 2
   _offsetCollisionBox: {x: 0, y: 0}
   _offsetToReplace: {x: 0, y: 0}
   goPlatform: {fileID: 0}
-  PLAYER_IDLE: {fileID: 0}
-  PLAYER_WALK: {fileID: 0}
-  PLAYER_JUMP: {fileID: 0}
-  PLAYER_CHARGE_JUMP: {fileID: 0}
-  PLAYER_FALL: {fileID: 0}
+  PLAYER_IDLE: {fileID: 7400000, guid: a3f98f4f14b90d042ad30ba1a2188a3b, type: 2}
+  PLAYER_WALK: {fileID: 7400000, guid: 67ee61d39ba063148bf64e52fcef4edf, type: 2}
+  PLAYER_JUMP: {fileID: 7400000, guid: 68d81b4c7a233244a857b3b6e2c109bc, type: 2}
+  PLAYER_CHARGE_JUMP: {fileID: 7400000, guid: 3964d79b2105d3b448262a9e75c03c65, type: 2}
+  PLAYER_FALL: {fileID: 7400000, guid: 9a85ba1e5d6a0154285667ea6b049a92, type: 2}
   PLAYER_LAMP_PLANE: {fileID: 0}
 --- !u!95 &2831346148189997996
 Animator:
@@ -290,7 +290,7 @@ Animator:
   m_GameObject: {fileID: 981251143103645683}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 47fea8e8bc1f77840843788aa2c5cae5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 309e76b00b78ae044b1c1bc9d6041a44, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -15,6 +15,8 @@ public class ObjectSelection : MonoBehaviour
     public GameObject playerGhost;
     public GameObject playerLamp;
 
+  
+
 
     private bool _CanTransformLamp = false;
     private bool _CanTransformGhost = false;
@@ -22,8 +24,9 @@ public class ObjectSelection : MonoBehaviour
     private GameObject pressToDestroy;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        this.gameObject.transform.position = playerGhost.gameObject.transform.position;
     }
 
     // Update is called once per frame

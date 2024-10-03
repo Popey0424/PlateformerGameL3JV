@@ -142,7 +142,18 @@ public class PlayerController : MonoBehaviour
         {
             var velocity = _rb.velocity;
             Vector2 wantedVelocity = new Vector2(_inputs.x * _walkSpeed, velocity.y);
-            _rb.velocity = Vector2.MoveTowards(velocity, wantedVelocity, _acceleration * Time.deltaTime);
+            //_rb.velocity = Vector2.MoveTowards(velocity, wantedVelocity, _acceleration * Time.deltaTime);
+
+            if(_inputs.x == 0)
+            {
+                wantedVelocity = new Vector2(0, velocity.y);
+                _rb.velocity = Vector2.MoveTowards(velocity, wantedVelocity,_acceleration * 2 * Time.deltaTime);
+
+            }
+            else
+            {
+                _rb.velocity = Vector2.MoveTowards(velocity, wantedVelocity, _acceleration * Time.deltaTime);
+            }
         }
 
         if (_inputs.x > 0 && !isFacingRight)
