@@ -15,12 +15,12 @@ public class GameManager : MonoBehaviour
     public GameObject Ghost;
     [SerializeField] private Image imageFade;
 
-    public GameObject objectToDesactive;
+    //public GameObject objectToDesactive;
 
-    private void Start()
-    {
-        objectToDesactive.SetActive(false);
-    }
+    //private void Start()
+    //{
+    //    objectToDesactive.SetActive(false);
+    //}
 
     private void Awake()
     {
