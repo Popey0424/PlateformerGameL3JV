@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpChargeSlider: {fileID: 8611796368641179644}
-  _playerController: {fileID: 0}
+  _playerController: {fileID: 1568887585503582288}
 --- !u!1 &981251143103645683
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,14 +104,13 @@ GameObject:
   - component: {fileID: 5255068159534932109}
   - component: {fileID: 1568887585503582288}
   - component: {fileID: 2831346148189997996}
-  - component: {fileID: 6635510896099910170}
   m_Layer: 0
   m_Name: PlayerPrefabs
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &802253837908355365
 Transform:
   m_ObjectHideFlags: 0
@@ -259,17 +258,17 @@ MonoBehaviour:
   _rb: {fileID: 5255068159534932109}
   _walkSpeed: 10
   _acceleration: 10
-  _groundOffset: -0.96
-  _groundRadius: 0.05
+  _groundOffset: -0.9
+  _groundRadius: 0.22
   _GroundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  _inputJump: 0
+  _inputJump: 1
   _isGrounded: 0
-  _jumpForceMin: 1
-  _jumpForceMax: 120
-  _maxHoldTime: 2
-  _fallMultiplier: 0.1
+  _jumpForceMin: 5
+  _jumpForceMax: 15
+  _maxHoldTime: 1.5
+  _fallMultiplier: 0.8
   _lowJumpMultiplier: 2
   _offsetCollisionBox: {x: 0, y: 0}
   _offsetToReplace: {x: 0, y: 0}
@@ -301,21 +300,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6635510896099910170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981251143103645683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c0083ec7b5b6e44b432113cc5b73cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pressZ: {fileID: 8684419090279942479, guid: 3a777d532d128f34398f4e465c78107f, type: 3}
-  playerGhost: {fileID: 981251143103645683}
-  playerLamp: {fileID: 0}
 --- !u!1 &5806598881683627994
 GameObject:
   m_ObjectHideFlags: 0
