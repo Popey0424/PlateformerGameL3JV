@@ -137,6 +137,7 @@ public class MainMenuController : MonoBehaviour
     {
         audioClick.Play();
         Application.Quit();
+        Debug.Log("JEu Quitter");
     }
     #endregion
 
@@ -144,13 +145,7 @@ public class MainMenuController : MonoBehaviour
     public void OnClickLeaveGameNo()
     {
         audioClick.Play();
-        Animator animator_LeaveGame = leaveWarning.GetComponent<Animator>();
-
-        if (animator_LeaveGame != null)
-        {
-            bool IsOpen = animator_LeaveGame.GetBool("IsOpen");
-            animator_LeaveGame.SetBool("IsOpen", false);
-        }
+        leaveWarning.SetActive(false);
         rayCastLeaveImage.SetActive(false);
     }
     #endregion
@@ -176,6 +171,7 @@ public class MainMenuController : MonoBehaviour
     public void OnClickWarningLeave()
     {
         leaveWarning.SetActive(true);
+        rayCastLeaveImage.SetActive(true);
     }
     #endregion
 
