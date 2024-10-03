@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Respawn();
+         //   Respawn();
         }
 
         _animator = GetComponent<Animator>();

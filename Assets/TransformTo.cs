@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Unity.Mathematics;
 
+
 public class TransformTo : MonoBehaviour
 {
     [SerializeField] private GameObject basePlayer;
@@ -41,7 +42,13 @@ public class TransformTo : MonoBehaviour
        
         
             Debug.Log("switch");
-            GameObject playerInstance = Instantiate(transformTo, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), quaternion.identity);
+        //GameObject playerInstance = Instantiate(transformTo, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), quaternion.identity);
+        transformTo.SetActive(true);
+
+
+        transformTo.transform.position = transform.position;
+        basePlayer.SetActive(false);
+
         
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -49,6 +56,8 @@ public class TransformTo : MonoBehaviour
         isInTrigger = false;
         Destroy(pressToDestroy);
     }
+
+
 
 
 

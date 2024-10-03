@@ -315,8 +315,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressZ: {fileID: 8684419090279942479, guid: 3a777d532d128f34398f4e465c78107f, type: 3}
-  playerGhost: {fileID: 0}
-  playerLamp: {fileID: 981251143103645683}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  cameraFollow: {fileID: 0}
 --- !u!1 &5780815356690470439
 GameObject:
   m_ObjectHideFlags: 0
