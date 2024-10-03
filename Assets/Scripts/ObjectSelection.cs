@@ -15,6 +15,8 @@ public class ObjectSelection : MonoBehaviour
     public GameObject playerGhost;
     public GameObject playerLamp;
 
+  
+
 
     private bool _CanTransformLamp = false;
     private bool _CanTransformGhost = false;
