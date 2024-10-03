@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5849719947023814387}
   - component: {fileID: 4054254741862730893}
   - component: {fileID: 4012121733930210277}
+  - component: {fileID: 1203235198951645715}
   m_Layer: 0
   m_Name: Lamp
   m_TagString: Lamp
@@ -120,3 +121,19 @@ CircleCollider2D:
   m_Offset: {x: -0.96574783, y: -1.2691195}
   serializedVersion: 2
   m_Radius: 9.266306
+--- !u!114 &1203235198951645715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350542676564163877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54b424989f7f9c458e332b572ba82b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePlayer: {fileID: 0}
+  t_BasePlayer: {fileID: 0}
+  transformTo: {fileID: 0}
+  pressZ: {fileID: 8684419090279942479, guid: 3a777d532d128f34398f4e465c78107f, type: 3}

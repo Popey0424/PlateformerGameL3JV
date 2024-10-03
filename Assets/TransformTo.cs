@@ -16,7 +16,15 @@ public class TransformTo : MonoBehaviour
 
     private GameObject pressToDestroy;
 
-    private bool isInTrigger = false; 
+    private bool isInTrigger = false;
+    [SerializeField] private  CameraFollow camFollow;
+
+
+    private void Start()
+    {
+        camFollow = Camera.main.GetComponent<CameraFollow>();
+    }
+
 
     private void Update()
     {
@@ -39,17 +47,24 @@ public class TransformTo : MonoBehaviour
 
     private void SwitchTo()
     {
-       
-        
-            Debug.Log("switch");
-        //GameObject playerInstance = Instantiate(transformTo, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), quaternion.identity);
+
+        Debug.Log("Switching character...");
+
         transformTo.SetActive(true);
-
-
         transformTo.transform.position = transform.position;
+
+
+       
         basePlayer.SetActive(false);
 
-        
+        camFollow.SetTarget(transformTo.transform);
+
+        Debug.Log("Camera should now follow: " + transformTo.name);
+        Destroy(gameObject);
+
+
+
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

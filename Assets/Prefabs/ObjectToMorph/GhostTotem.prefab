@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6665871780212375841}
   - component: {fileID: 8178143941220704157}
   - component: {fileID: 7625604225472354230}
+  - component: {fileID: 1623994029824104647}
   m_Layer: 0
   m_Name: GhostTotem
   m_TagString: Ghost
@@ -117,6 +118,22 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3453346, y: 1.739485}
+  m_Offset: {x: 15.529181, y: -1.4762465}
   serializedVersion: 2
-  m_Radius: 5.6247687
+  m_Radius: 38.097717
+--- !u!114 &1623994029824104647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944835482103531360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54b424989f7f9c458e332b572ba82b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePlayer: {fileID: 0}
+  t_BasePlayer: {fileID: 0}
+  transformTo: {fileID: 0}
+  pressZ: {fileID: 8684419090279942479, guid: 3a777d532d128f34398f4e465c78107f, type: 3}

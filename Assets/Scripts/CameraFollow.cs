@@ -8,13 +8,15 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float xOffset = 1f;
     [SerializeField] private float yOffset = 1f;
     public Transform target;
-   
-    
 
-    
+
+
+
+
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
+        Debug.Log("New camera target: " + target.name);
     }
 
     private void Update()
