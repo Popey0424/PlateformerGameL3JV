@@ -19,24 +19,30 @@ public class SettingsManager : MonoBehaviour
 
     public void OnSFXValueChanged(float newValue)
     {
-        if(newValue < 0.01f)
+        if(newValue < 0.0001f)
         {
-            newValue = 0.01f;
+            newValue = 0.0001f;
         }
 
+
         float volume = Mathf.Log10(newValue) * 20;
+
         //PlayerPrefs.SetFloat("SFX_Volume", newValue);
         MixerSFX.SetFloat("SFX_Volume", volume);
     }
 
     public void OnVolumeValueChanged(float newValue)
     {
-        if(newValue < 0.01f)
+        if (newValue < 0.0001f)
         {
-            newValue = 0.01f;
+            newValue = 0.0001f;
         }
+
         float volume = Mathf.Log10(newValue) * 20;
+
         //PlayerPrefs.SetFloat("Volume_Volume", newValue);
         MixerVolume.SetFloat("Volume_Volume", volume);
     }
+
+
 }
