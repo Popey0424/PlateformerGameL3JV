@@ -168,7 +168,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 1687148727, guid: 590c399ec9be88f43a7df67c8ec51e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -273,6 +273,8 @@ MonoBehaviour:
   _offsetCollisionBox: {x: 0, y: 0}
   _offsetToReplace: {x: 0, y: 0}
   goPlatform: {fileID: 0}
+  jumpSound: {fileID: 0}
+  deathSound: {fileID: 0}
   PLAYER_IDLE: {fileID: 7400000, guid: a3f98f4f14b90d042ad30ba1a2188a3b, type: 2}
   PLAYER_WALK: {fileID: 7400000, guid: 67ee61d39ba063148bf64e52fcef4edf, type: 2}
   PLAYER_JUMP: {fileID: 7400000, guid: 68d81b4c7a233244a857b3b6e2c109bc, type: 2}
@@ -520,7 +522,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &4610413930620915790
 MonoBehaviour:

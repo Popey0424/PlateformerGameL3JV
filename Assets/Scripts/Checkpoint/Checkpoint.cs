@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioCheckPoint;
     public GhostChase Chase;
     private bool isActivated = false;
 
@@ -11,6 +12,7 @@ public class Checkpoint : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            audioCheckPoint.Play();
             GameManager.Instance.SaveCheckpoint(transform.position);
             
 

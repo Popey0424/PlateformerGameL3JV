@@ -9,15 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 96db960c4aedf1b46a42887060ba14ee
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Intro.unity
+    guid: 44bc4334573543844bcf7cc031ce0ef5
+  - enabled: 1
+    path: Assets/Scenes/SceneGD.unity
+    guid: 4855f3867d1bda741a016abef8cf5f5d
   - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: f3fe6a3edd3658b45a6bac36f6cde29f
-  - enabled: 1
-    path: Assets/Scenes/looseScreen.unity
-    guid: 67bda151fa5fe2948828478bff778763
-  - enabled: 1
-    path: Assets/Scenes/SceneFInalLouis.unity
-    guid: 46a95fc12ab66f74ca6270c9f4d402a1
   m_configObjects: {}

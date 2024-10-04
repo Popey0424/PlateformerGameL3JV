@@ -77,7 +77,7 @@ public class MainMenuController : MonoBehaviour
     }
     private void FadeStartComplete()
     {
-        SceneManager.LoadScene("SceneGD");
+        SceneManager.LoadScene("Intro");
     }
     #endregion
 
