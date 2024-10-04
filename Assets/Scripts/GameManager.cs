@@ -6,6 +6,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using JetBrains.Annotations;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class GameManager : MonoBehaviour
     //    objectToDesactive.SetActive(false);
     //}
 
+    private void Start()
+    {
+        PlayerPrefs.GetFloat("SFX_Volume");
+        PlayerPrefs.GetFloat("Volume_Volume");
+
+    }
     private void Awake()
     {
         if (Instance == null)

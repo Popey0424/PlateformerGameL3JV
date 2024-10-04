@@ -71,8 +71,9 @@ public class PlayerController : MonoBehaviour
     private float _timerEndJump = 1f;
     private bool _isJumping = false;
 
+    public float planeValue;
+    private bool _isPlane = false;
 
-   
     void Start()
     {
         if (GameManager.Instance.GetLastCheckpointPosition() == Vector2.zero)
@@ -228,18 +229,27 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJumpPhysics()
     {
-        if (_rb.velocity.y < 0) 
+        if (_rb.velocity.y < 0)
         {
+            _isPlane = false;
             _rb.gravityScale = _fallMultiplier;
 
             //ChangeAnimationState(PLAYER_LAMP_PLANE);
         }
         else if (_rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 
         {
+            _isPlane = false;
             _rb.gravityScale = _lowJumpMultiplier;  
+        }
+        else if (this.gameObject.name == "PlayerPrefabsVariante1" && (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow)) && _isGrounded == false && _isJumping == false)
+        {
+            _isPlane = true;
+            _rb.gravityScale = planeValue;
+            ChangeAnimationState(PLAYER_LAMP_PLANE);
         }
         else
         {
+            _isPlane = false;
             _rb.gravityScale = 1f;
         }
     }
@@ -334,7 +344,7 @@ public class PlayerController : MonoBehaviour
 
     private void AnimationsCond()
     {
-        if (!_isGrounded && _isJumping == false)
+        if (!_isGrounded && _isJumping == false && _isPlane == false)
         {
             ChangeAnimationState(PLAYER_FALL);
         }

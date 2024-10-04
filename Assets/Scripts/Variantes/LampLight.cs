@@ -13,19 +13,12 @@ public class LampLight : MonoBehaviour
 
     private void Start()
     {
-
+        OnLight();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnLight();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            OffLight();
-        }
+      
 
     }
 

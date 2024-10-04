@@ -29,13 +29,15 @@ public class PauseMenu : MonoBehaviour
     #region BackToMainMenu
     private void OnClickMenuPause()
     {
+        Time.timeScale = 0;
         pauseMenu.SetActive(true);
         raycast.gameObject.SetActive(true);
-        Time.timeScale = 0;
+        
     }
 
     public void OnClickMainMenu()
     {
+        Time.timeScale = 1;
         imageFade.gameObject.SetActive(true);
         imageFade.DOFade(1, 2.9f).OnComplete(FadeCompleteBackToMainMenu);
     }
@@ -51,9 +53,10 @@ public class PauseMenu : MonoBehaviour
     #region OnClickBackToGame
     public void OnClickBackToGame()
     {
+        Time.timeScale = 1;
         pauseMenu.SetActive(false);
         raycast.gameObject.SetActive(false);
-        Time.timeScale = 1;
+        
     }
     #endregion
 

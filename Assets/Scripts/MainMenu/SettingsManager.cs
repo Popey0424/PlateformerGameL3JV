@@ -27,7 +27,7 @@ public class SettingsManager : MonoBehaviour
 
         float volume = Mathf.Log10(newValue) * 20;
 
-        //PlayerPrefs.SetFloat("SFX_Volume", newValue);
+        PlayerPrefs.SetFloat("SFX_Volume", newValue);
         MixerSFX.SetFloat("SFX_Volume", volume);
     }
 
@@ -40,7 +40,7 @@ public class SettingsManager : MonoBehaviour
 
         float volume = Mathf.Log10(newValue) * 20;
 
-        //PlayerPrefs.SetFloat("Volume_Volume", newValue);
+        PlayerPrefs.SetFloat("Volume_Volume", newValue);
         MixerVolume.SetFloat("Volume_Volume", volume);
     }
 
