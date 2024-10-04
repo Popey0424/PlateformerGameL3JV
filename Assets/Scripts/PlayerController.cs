@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
@@ -102,12 +103,8 @@ public class PlayerController : MonoBehaviour
         HandleJumpRelease();
         HandleJumpPhysics();
         HandlePlatform();
+        AnimationsCond();
 
-
-        if (!_isGrounded && (_isJumping == false))
-        {
-            ChangeAnimationState(PLAYER_FALL);
-        }
     }
 
     void HandleInputs()
@@ -121,7 +118,6 @@ public class PlayerController : MonoBehaviour
             _jumpHoldTime = 0f;
 
             _timerEndJump = 0f;
-            _isJumping = true;
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && _isChargingJump)
@@ -132,7 +128,6 @@ public class PlayerController : MonoBehaviour
 
             _timerEndJump = 0f;
             _isJumping = true;
-            ChangeAnimationState(PLAYER_JUMP);
         }
     }
 
@@ -159,22 +154,10 @@ public class PlayerController : MonoBehaviour
         if (_inputs.x > 0 && !isFacingRight)
         {
             Flip();
-            if (_inputJump == false && _isGrounded == true)
-            {
-                ChangeAnimationState(PLAYER_WALK);
-            }
         }
         else if (_inputs.x < 0 && isFacingRight)
         {
             Flip();
-            if (_inputJump == false && _isGrounded == true)
-            {
-                ChangeAnimationState(PLAYER_WALK);
-            }
-        }
-        else if (_inputs.x == 0 && _isGrounded == true && _inputJump == false && _isJumping == false && _isChargingJump == false)
-        {
-            ChangeAnimationState(PLAYER_IDLE);
         }
     }
 
@@ -209,7 +192,6 @@ public class PlayerController : MonoBehaviour
             
             _jumpHoldTime = Mathf.Clamp(_jumpHoldTime, 0f, _maxHoldTime);
 
-            ChangeAnimationState(PLAYER_CHARGE_JUMP);
         }
     }
 
@@ -340,6 +322,30 @@ public class PlayerController : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private void AnimationsCond()
+    {
+        if (!_isGrounded && _isJumping == false)
+        {
+            ChangeAnimationState(PLAYER_FALL);
+        }
+        if ((_inputs.x > 0 || _inputs.x < 0) && _inputJump == false && _isGrounded == true && _isChargingJump == false && _isJumping == false)
+        {
+            ChangeAnimationState(PLAYER_WALK);
+        }
+        if (_inputs.x == 0 && _isGrounded == true && _inputJump == false && _isChargingJump == false && _isJumping == false)
+        {
+            ChangeAnimationState(PLAYER_IDLE);
+        }
+        if (_isChargingJump == true)
+        {
+            ChangeAnimationState(PLAYER_CHARGE_JUMP);
+        }
+        if (_isJumping == true)
+        {
+            ChangeAnimationState(PLAYER_JUMP);
         }
     }
 }
