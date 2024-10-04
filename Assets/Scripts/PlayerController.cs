@@ -44,6 +44,12 @@ public class PlayerController : MonoBehaviour
     [Header("Facing")]
     private bool isFacingRight = true;
 
+
+    [Header("SoundsPlayer")]
+    [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private AudioSource deathSound;
+    
+
     private bool playerDie = false;
 
     private float _timeSinceGrounded;
@@ -52,7 +58,7 @@ public class PlayerController : MonoBehaviour
     private bool _isChargingJump = false;  
     private bool _isInAir = false;
 
-    //Player animation states
+    [Header("Animations")]
     Animator _animator;
     AnimationClip _currentState;
     public AnimationClip PLAYER_IDLE;
@@ -111,7 +117,7 @@ public class PlayerController : MonoBehaviour
     {
         _inputs.x = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded || Input.GetKeyDown(KeyCode.UpArrow) && _isGrounded)
         {
             
             _isChargingJump = true;
@@ -199,7 +205,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_inputJump && _isGrounded)
         {
-            
+            jumpSound.Play();
             float jumpForce = Mathf.Lerp(_jumpForceMin, _jumpForceMax, _jumpHoldTime / _maxHoldTime);
 
             
@@ -254,6 +260,7 @@ public class PlayerController : MonoBehaviour
     public void DieAndRespawn()
     {
         Debug.Log("Le joueur est mort !");
+        deathSound.Play();
         Respawn();
     }
 
