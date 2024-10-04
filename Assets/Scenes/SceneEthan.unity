@@ -3166,6 +3166,18 @@ PrefabInstance:
       value: Laser
       objectReference: {fileID: 0}
     - target: {fileID: 5490834463227992940, guid: 126ac2ccf8527af40829dd32234f3fc6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5490834463227992940, guid: 126ac2ccf8527af40829dd32234f3fc6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5490834463227992940, guid: 126ac2ccf8527af40829dd32234f3fc6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5490834463227992940, guid: 126ac2ccf8527af40829dd32234f3fc6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.439
       objectReference: {fileID: 0}
@@ -3213,6 +3225,26 @@ PrefabInstance:
       propertyPath: StartObject
       value: 
       objectReference: {fileID: 196033742}
+    - target: {fileID: 8477402834653873053, guid: 126ac2ccf8527af40829dd32234f3fc6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    - target: {fileID: 8477402834653873053, guid: 126ac2ccf8527af40829dd32234f3fc6, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477402834653873053, guid: 126ac2ccf8527af40829dd32234f3fc6, type: 3}
+      propertyPath: m_Color.b
+      value: 0.48235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477402834653873053, guid: 126ac2ccf8527af40829dd32234f3fc6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477402834653873053, guid: 126ac2ccf8527af40829dd32234f3fc6, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9568628
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
