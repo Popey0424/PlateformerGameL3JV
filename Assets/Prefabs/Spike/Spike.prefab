@@ -146,3 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd96f477356e564a82c3118f2fe52fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamShake: {fileID: 0}
