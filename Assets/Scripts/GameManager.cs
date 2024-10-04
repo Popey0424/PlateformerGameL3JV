@@ -56,17 +56,18 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GonnaDie()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         Debug.Log("FinDuTempsImaprtie");
         imageFade.gameObject.SetActive(true);
-        imageFade.DOFade(1, 2.9f).OnComplete(FadeDeathComplete);
+        imageFade.DOFade(1, 2f).OnComplete(FadeDeathComplete);
         Debug.Log("MOOOOOOOOOOOORRRRRRRRRRRRRTTTTTTTTTTTTTTTT");
     }
 
     private void FadeDeathComplete()
     {
         Debug.Log("Changement de Scene");
-        SceneManager.LoadScene(3);
+        //SceneManager.LoadScene(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
 }
