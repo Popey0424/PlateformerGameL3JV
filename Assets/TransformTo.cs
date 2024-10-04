@@ -8,15 +8,21 @@ using Unity.Mathematics;
 public class TransformTo : MonoBehaviour
 {
     [SerializeField] private GameObject basePlayer;
-
     [SerializeField] private Transform t_BasePlayer;
-
     [SerializeField] private GameObject transformTo;
     [SerializeField] private GameObject pressZ;
-
     private GameObject pressToDestroy;
-
     private bool isInTrigger = false;
+
+
+    [Header("AudioSources")]
+    [SerializeField] private AudioSource transformToSound;
+
+
+    [Header("FX Prefab")]
+    [SerializeField] private GameObject fxPrefab;
+
+    [Header("Camera")]
     [SerializeField] private  CameraFollow camFollow;
 
 
@@ -28,7 +34,7 @@ public class TransformTo : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W) && isInTrigger == true)
+        if(Input.GetKeyDown(KeyCode.E) && isInTrigger == true)
         {
             SwitchTo();
         }
@@ -38,7 +44,7 @@ public class TransformTo : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameObject press = Instantiate(pressZ, new Vector2(collision.gameObject.transform.position.x, this.gameObject.transform.position.y + 1), quaternion.identity);
+            GameObject press = Instantiate(pressZ, new Vector2(this.gameObject.transform.position.x + 2, this.gameObject.transform.position.y + 1), quaternion.identity);
             pressToDestroy = press;
             isInTrigger = true;
             //SwitchTo();
@@ -52,12 +58,16 @@ public class TransformTo : MonoBehaviour
 
         transformTo.SetActive(true);
         transformTo.transform.position = transform.position;
-
+        transformToSound.Play();
 
        
         basePlayer.SetActive(false);
+        Instantiate(fxPrefab, transform.position, transform.rotation);
+
+        
 
         camFollow.SetTarget(transformTo.transform);
+      
 
         Debug.Log("Camera should now follow: " + transformTo.name);
         Destroy(gameObject);
@@ -72,6 +82,8 @@ public class TransformTo : MonoBehaviour
         Destroy(pressToDestroy);
     }
 
+
+   
 
 
 

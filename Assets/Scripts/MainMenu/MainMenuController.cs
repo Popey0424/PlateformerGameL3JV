@@ -11,6 +11,10 @@ public class MainMenuController : MonoBehaviour
     [Header("FadeImage")]
     [SerializeField] private Image imagefade;
 
+    [Header("FadfeImageSettigns")]
+    //[SerializeField] private float opacityFade;
+    [SerializeField] private float timeFade;
+
     [Header("Menus")]
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject creditsMenu;
@@ -43,16 +47,22 @@ public class MainMenuController : MonoBehaviour
         {
             //Back
             IsInMainMenu = true;
+            ResetFade();
+            OnClickBackSettings();
         }
         if (creditsMenu.activeSelf && Input.GetKeyDown(leaveMainMenu))
         {
             //back
             IsInMainMenu = true;
+            ResetFade();
+            OnClickBackCredits();
         }
         if(leaveWarning.activeSelf && Input.GetKeyDown(leaveMainMenu))
         {
             //back
             IsInMainMenu= true;
+            ResetFade();
+            OnClickLeaveGameNo();
         }
     }
 
@@ -63,11 +73,11 @@ public class MainMenuController : MonoBehaviour
     {
         audioClick.Play();
         imagefade.gameObject.SetActive(true);
-        imagefade.DOFade(1, 2.9f).OnComplete(FadeStartComplete);
+        imagefade.DOFade(1, timeFade).OnComplete(FadeStartComplete);
     }
     private void FadeStartComplete()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("SceneGD");
     }
     #endregion
 
@@ -76,20 +86,20 @@ public class MainMenuController : MonoBehaviour
     {
         audioClick.Play();
         imagefade.gameObject.SetActive(true);
-        imagefade.DOFade(1, 2.9f).OnComplete(FadeCreditsComplete);
+        imagefade.DOFade(1, timeFade).OnComplete(FadeCreditsComplete);
     }
     private void FadeCreditsComplete()
     {
         creditsMenu.gameObject.SetActive(true);
         IsInMainMenu = false;
-        imagefade.DOFade(0, 1).OnComplete(ResetFade);
+        imagefade.DOFade(0, timeFade).OnComplete(ResetFade);
     }
 
     public void OnClickBackCredits()
     {
         audioClick.Play();
         imagefade.gameObject.SetActive(true);
-        imagefade.DOFade(1, 1f).OnComplete(FadeMenuComplete);
+        imagefade.DOFade(1, timeFade).OnComplete(FadeMenuComplete);
     }
     #endregion
 
@@ -98,21 +108,21 @@ public class MainMenuController : MonoBehaviour
     {
         audioClick.Play();
         imagefade.gameObject.SetActive(true);
-        imagefade.DOFade(1, 1f).OnComplete(FadeSettingsComplete);
+        imagefade.DOFade(1, timeFade).OnComplete(FadeSettingsComplete);
     }
 
     private void FadeSettingsComplete()
     {
         settingsMenu.gameObject.SetActive(true);
         IsInMainMenu = false;
-        imagefade.DOFade(0, 1).OnComplete(ResetFade);
+        imagefade.DOFade(0, timeFade).OnComplete(ResetFade);
     }
 
     public void OnClickBackSettings()
     {
         audioClick.Play();
         imagefade.gameObject.SetActive(true);
-        imagefade.DOFade(1, 1f).OnComplete(FadeMenuComplete);
+        imagefade.DOFade(1, timeFade).OnComplete(FadeMenuComplete);
     }
     #endregion
 
@@ -156,7 +166,7 @@ public class MainMenuController : MonoBehaviour
         settingsMenu.SetActive(false);
         creditsMenu.SetActive(false);
         IsInMainMenu = true;
-        imagefade.DOFade(0, 1).OnComplete(ResetFade);
+        imagefade.DOFade(0, timeFade).OnComplete(ResetFade);
     }
     #endregion
 

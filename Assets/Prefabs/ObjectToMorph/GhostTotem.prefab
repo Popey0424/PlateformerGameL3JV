@@ -137,3 +137,6 @@ MonoBehaviour:
   t_BasePlayer: {fileID: 0}
   transformTo: {fileID: 0}
   pressZ: {fileID: 8684419090279942479, guid: 3a777d532d128f34398f4e465c78107f, type: 3}
+  transformToSound: {fileID: 0}
+  fxPrefab: {fileID: 340979074968068831, guid: 7dc63bc048c3fe94a852e1fbb3622205, type: 3}
+  camFollow: {fileID: 0}
