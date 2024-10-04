@@ -160,7 +160,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.Boo
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -286,7 +287,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 79dbbd60d9b95e64e8ed0b4ff2e8662d, type: 3}
+      m_Icon: {fileID: 2800000, guid: 864b7086e5fb2ef4db9071f42a86fae1, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
